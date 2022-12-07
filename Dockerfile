@@ -6,7 +6,7 @@ COPY src /workspace/src
 RUN mvn -B package --file pom.xml -DskipTests
 
 FROM tomcat:jre11
-COPY  --from=build --chown=ideyalab /workspace/target/my.war /usr/local/tomcat/webapps/
+COPY  --from=build /workspace/target/my.war /usr/local/tomcat/webapps/
 EXPOSE 8080
 VOLUME /usr/local/tomcat
 ENTRYPOINT ["catalina.sh", "jpda","run"]

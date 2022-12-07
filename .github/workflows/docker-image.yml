@@ -31,7 +31,7 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_USERNAME}}/${{ secrets.DOCKER_REPO }}:latest .
       - name: Publish Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
- build-docker-pull:
+  build-docker-pull:
     name: Publish to Docker pull
     runs-on: ubuntu-latest
     needs: [pull image]

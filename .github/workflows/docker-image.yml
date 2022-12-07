@@ -31,20 +31,5 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_USERNAME}}/${{ secrets.DOCKER_REPO }}:latest .
       - name: Publish Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
-  build-docker-pull:
-    name: Publish to Docker pull
-    runs-on: ubuntu-latest
-    needs: [pull image]
-      - name: Docker pull
-        uses: actions/ssh_actions@v2
-        with:
-       	 host: ec2-3-95-15-235.compute-1.amazonaws.com
-       	 username: ubuntu
-	 key: ${{secrets.PEM_KEY}}
-	 env: GITHUB_SHA
-	   script: |
-              docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWD }}
-              docker pull ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
-          docker run -it -d -p 8090:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
-          
+  
 		

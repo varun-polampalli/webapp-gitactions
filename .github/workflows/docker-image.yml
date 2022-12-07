@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag test:$(date +%s)
+      - name: build and push to dockerhub and initiate deploment
+  # You may pin to the exact commit or the version.
+  # uses: esomore/deploy-github-action@44c0b2889cb2a601c2ccf9ec552b25b435aa11bb
+  uses: esomore/deploy-github-action@1.0.10
+  with:
+    # The docker container image name
+    image-name: test:$(date +%s)
+    # The dockerfile used by the docker build command
+    docker-file: 
+    # Deployment will be invoked on this repo after image push
+    deploy-action-repo: 
+    # Dockerhub username
+    dockerhub-username: citagi63@gmail.com
+    # Dockerhub password
+    dockerhub-password: Chandra@12
+    # Github personal access token to be used to call the deploy-action-repo
+   
+      

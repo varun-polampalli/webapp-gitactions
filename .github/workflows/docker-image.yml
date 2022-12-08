@@ -32,11 +32,11 @@ jobs:
       - name: Publish Docker image
         run: sudo docker push ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
       - name: remove stop container
-        run: sudo docker stop ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
+        run: sudo docker stop test
       - name: remove old container
-        run: sudo docker rm  ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
+        run: sudo docker rm  test
       - name: run docker container
-        run: sudo docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
+        run: sudo docker run -it -d --tag test -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
       - name: Docker deploy
         run: sudo sh deploy.sh
   build-docker-pull:
@@ -54,4 +54,4 @@ jobs:
         script: |
          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWD }}
          docker pull ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
-         docker run -it -d -p 8080:8080 citagi63/github
+         docker run -it -d --tag test -p 8080:8080 citagi63/github

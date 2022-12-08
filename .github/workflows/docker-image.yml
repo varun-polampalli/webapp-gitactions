@@ -36,14 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_and_test]
     steps:
-        - name: docker pull and run from hub
-        uses: actions/checkout@v2
-        with:
-         host: ec2-44-206-253-49.compute-1.amazonaws.com
-         username: ubuntu
-         key: ${{secrets.PEM_KEY}}
-         env: GITHUB_SHA
-         script: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWD }}
-          docker pull ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
-          docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
+      - name: docker pull and run from hub
+      uses: actions/checkout@v2
+      with:
+       host: ec2-44-206-253-49.compute-1.amazonaws.com
+       username: ubuntu
+       key: ${{secrets.PEM_KEY}}
+       env: GITHUB_SHA
+       script: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWD }}
+        docker pull ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
+        docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}

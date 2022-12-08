@@ -36,7 +36,7 @@ jobs:
       - name: remove old container
         run: sudo docker rm  test
       - name: run docker container
-        run: sudo docker run -it -d --tag test -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
+        run: sudo docker run -it -d --name test -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
       - name: Docker deploy
         run: sudo sh deploy.sh
   build-docker-pull:

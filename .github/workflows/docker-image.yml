@@ -32,13 +32,13 @@ jobs:
       - name: Publish Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
   build-docker-pull:
-    name: Publish to Docker Hub
+    name: Publish to Docker pull
     runs-on: ubuntu-latest
-    needs: [build_and_test]
+    needs: [pull_and_deploy]
     steps:
-      - name: docker pull and run from hub
-      uses: actions/checkout@v2
-      with:
+     - name: docker pull and run from hub
+     - uses: actions/checkout@v2
+       with:
        host: ec2-44-206-253-49.compute-1.amazonaws.com
        username: ubuntu
        key: ${{secrets.PEM_KEY}}

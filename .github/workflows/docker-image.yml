@@ -31,6 +31,8 @@ jobs:
         run: sudo docker build -t ${{ secrets.DOCKER_USERNAME}}/${{ secrets.DOCKER_REPO }}:latest .
       - name: Publish Docker image
         run: sudo docker push ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
+      - name: remove old img
+        run: sudo docker rm -f ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
       - name: run docker container
         run: sudo docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}:latest
       - name: Docker deploy

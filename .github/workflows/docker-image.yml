@@ -46,4 +46,4 @@ jobs:
         script: |
          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWD }}
          docker pull ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
-         docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO }}
+         docker run -it -d -p 8080:8080 citagi63/github

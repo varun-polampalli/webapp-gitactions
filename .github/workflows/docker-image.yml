@@ -37,7 +37,7 @@ jobs:
     needs: [pull_and_deploy]
     steps:
      - name: docker pull and run from hub
-     - uses: actions/checkout@v2
+       uses: actions/checkout@v2
        with:
        host: ec2-44-206-253-49.compute-1.amazonaws.com
        username: ubuntu

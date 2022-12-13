@@ -34,5 +34,6 @@ jobs:
         with:
           name: github-actions
           template: fargate.yml
+          capabilities: CAPABILITY_IAM
           no-fail-on-empty-changeset: "1"
           #parameter-overrides: ""

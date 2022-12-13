@@ -42,7 +42,7 @@ Resources:
       TaskRoleArn: !Ref TaskRole
       ContainerDefinitions:
         - Name: github-actions
-          Image: 457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:latest
+          Image: 457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:${{ github.run_number }}
           PortMappings:
             - ContainerPort: 8080
           # Send logs to CloudWatch Logs

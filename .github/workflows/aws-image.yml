@@ -44,7 +44,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: bitbucket
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.run_number }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -75,4 +75,4 @@ jobs:
            template: fargate.yml
            capabilities: CAPABILITY_NAMED_IAM
            no-fail-on-empty-changeset: "1"
-           #parameter-overrides: "image=457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:latest"
+           #parameter-overrides: "Image=457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:${{ github.run_number }}"

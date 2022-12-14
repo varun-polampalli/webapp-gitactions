@@ -75,4 +75,4 @@ jobs:
            template: fargate.yml
            capabilities: CAPABILITY_NAMED_IAM
            no-fail-on-empty-changeset: "1"
-           #parameter-overrides: "Image=457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:${{ github.run_number }}"
+           parameter-overrides: "Image=457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:${{ github.run_number }}"

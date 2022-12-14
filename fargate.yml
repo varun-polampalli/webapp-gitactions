@@ -5,7 +5,10 @@ Parameters:
     Type: String
     # update with the name of the service
     Default: github-actions
- 
+  Image:
+    Type: String
+    # Update with the Docker image. "You can use images in the Docker Hub registry or specify other repositories (repository-url/image:tag)."
+    Default: 123456789012.dkr.ecr.region.amazonaws.com/image:tag
     
 Resources:
   Cluster:
@@ -43,7 +46,7 @@ Resources:
       TaskRoleArn: !Ref TaskRole
       ContainerDefinitions:
         - Name: github-actions
-          Image: 457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:latest
+          Image: !Ref Image
           PortMappings:
             - ContainerPort: 8080
           # Send logs to CloudWatch Logs

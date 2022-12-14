@@ -5,7 +5,9 @@ Parameters:
     Type: String
     # update with the name of the service
     Default: github-actions
-
+  image:
+    Type: String
+    
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
@@ -42,7 +44,7 @@ Resources:
       TaskRoleArn: !Ref TaskRole
       ContainerDefinitions:
         - Name: github-actions
-          Image: 457696123704.dkr.ecr.us-east-1.amazonaws.com/bitbucket:latest
+          Image: $image
           PortMappings:
             - ContainerPort: 8080
           # Send logs to CloudWatch Logs

@@ -101,12 +101,12 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: !Join ['', [!Ref ServiceName, ContainerSecurityGroup]]
-      VpcId: vpc-024849e9f0e102f41
+      VpcId: vpc-0266b1f5ac2084e8d
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 8080
           ToPort: 8080
-          SourceSecurityGroupId: sg-0acca6b75de22e6b1
+          SourceSecurityGroupId: sg-0c78392f053b60515
   Service:
     Type: AWS::ECS::Service
     # This dependency is needed so that the load balancer is setup correctly in time
@@ -126,10 +126,10 @@ Resources:
           # change to DISABLED if you're using private subnets that have access to a NAT gateway
           AssignPublicIp: ENABLED
           Subnets:
-            - subnet-080e1eb5d11afbd0c
-            - subnet-0380142407d07cf9e
+            - subnet-02bd69d3d6b5f5649
+            - subnet-069bbb389b602f647
           SecurityGroups:
-            - sg-0acca6b75de22e6b1
+            - sg-0c78392f053b60515
       
   LogGroup:
     Type: AWS::Logs::LogGroup
